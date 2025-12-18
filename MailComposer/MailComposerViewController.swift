@@ -57,23 +57,47 @@ class MailComposerViewController: UIViewController, MFMailComposeViewControllerD
         present(alert, animated: true)
     }
     
-    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: (any Error)?) {
+    func mailComposeController(
+        _ controller: MFMailComposeViewController,
+        didFinishWith result: MFMailComposeResult,
+        error: Error?
+    ) {
         controller.dismiss(animated: true) {
+            let title: String
+            let message: String
+
             switch result {
             case .cancelled:
-                print(StringConstants.cancel)
+                title = "Mail Cancelled"
+                message = "You cancelled the email."
+
             case .saved:
-                print(StringConstants.save)
+                title = "Mail Saved"
+                message = "Your email was saved as a draft."
+
             case .sent:
-                print(StringConstants.sent)
+                title = "Mail Sent"
+                message = "Your email has been sent successfully."
+
             case .failed:
-                print(StringConstants.fail)
+                title = "Mail Failed"
+                message = error?.localizedDescription ?? "Failed to send email."
+
             @unknown default:
-                break
+                return
             }
+
+            let alert = UIAlertController(
+                title: title,
+                message: message,
+                preferredStyle: .alert
+            )
+
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            self.present(alert, animated: true)
         }
     }
-    
+
     func convertToHTML(from text: String) -> String {
         
         var html = text
