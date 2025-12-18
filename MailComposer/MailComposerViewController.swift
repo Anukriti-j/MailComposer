@@ -1,6 +1,8 @@
 import UIKit
 import MessageUI
 
+// alert extension
+
 struct EmailContent {
     let type, mailto, emailSubject, emailBody: String
     let timestamp: String
@@ -11,15 +13,6 @@ struct EmailContent {
         case emailBody = "email_body"
         case timestamp
     }
-}
-
-enum StringConstants {
-    static let alertTitle = "Mail Not Configured"
-    static let message = "Please configure a Mail account on your device."
-    static let cancel = "Mail cancelled"
-    static let save = "Mail saved"
-    static let sent = "Mail sent"
-    static let fail = "Mail failed"
 }
 
 class MailComposerViewController: UIViewController, MFMailComposeViewControllerDelegate {
@@ -33,7 +26,7 @@ class MailComposerViewController: UIViewController, MFMailComposeViewControllerD
     
     @IBAction func sendMail(_ sender: Any) {
         guard MFMailComposeViewController.canSendMail() else {
-            showErrorMessage()
+            showAlert(title: "Mail Not Configured", message: "Please configure a Mail account on your device.")
             return
         }
         
@@ -45,16 +38,6 @@ class MailComposerViewController: UIViewController, MFMailComposeViewControllerD
         composePicker.setMessageBody(htmlBody, isHTML: true)
         
         present(composePicker, animated: true)
-    }
-    
-    func showErrorMessage() {
-        let alert = UIAlertController(
-            title: StringConstants.alertTitle,
-            message: StringConstants.message,
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "OK", style: .default))
-        present(alert, animated: true)
     }
     
     func mailComposeController(
@@ -86,18 +69,22 @@ class MailComposerViewController: UIViewController, MFMailComposeViewControllerD
             @unknown default:
                 return
             }
-
-            let alert = UIAlertController(
-                title: title,
-                message: message,
-                preferredStyle: .alert
-            )
-
-            alert.addAction(UIAlertAction(title: "OK", style: .default))
-            self.present(alert, animated: true)
+            self.showAlert(title: title, message: message)
         }
     }
 
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(
+            title: title,
+            message: message,
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "OK", style: .default))
+        DispatchQueue.main.async { [weak self] in
+            self?.present(alert, animated: true)
+        }
+    }
+    
     func convertToHTML(from text: String) -> String {
         
         var html = text
@@ -144,5 +131,3 @@ class MailComposerViewController: UIViewController, MFMailComposeViewControllerD
     }
     
 }
-
-
