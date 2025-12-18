@@ -1,9 +1,12 @@
+---
+````md
 # 📧 Mail Composer Demo App (iOS)
 
-A simple iOS demo application showcasing how to compose and send emails using
+A simple iOS demo application showcasing how to compose and send emails using  
 `MFMailComposeViewController` from the **MessageUI** framework.
 
 This project demonstrates best practices for:
+
 - Sending pre-filled emails
 - Handling mail composer results
 - Using HTML-formatted email bodies
@@ -42,15 +45,13 @@ This project demonstrates best practices for:
 
 ## 📂 Project Structure
 
-```
-
+```text
 MailComposerDemo
 │
 ├── MailComposerViewController.swift
 ├── EmailContent.swift
 ├── StringConstants.swift
 └── README.md
-
 ````
 
 ---
@@ -59,9 +60,10 @@ MailComposerDemo
 
 1. User taps **Send Mail**
 2. App checks if Mail services are available using:
-   ```swift
-   MFMailComposeViewController.canSendMail()
-````
+
+```swift
+MFMailComposeViewController.canSendMail()
+```
 
 3. Mail composer opens with pre-filled content
 4. User sends, saves, or cancels the email
@@ -131,9 +133,9 @@ This allows:
 ## ⚠️ Important Notes
 
 * ❌ Mail Composer **cannot be tested on Simulator**
-* ❌ `.sent` does not guarantee delivery, only that user tapped Send
+* ❌ `.sent` does not guarantee delivery, only that the user tapped **Send**
 * ❌ UI customization of Mail Composer is not allowed by Apple
-* ✅ Always dismiss the composer in delegate method
+* ✅ Always dismiss the composer in the delegate method
 
 ---
 
@@ -151,8 +153,8 @@ This allows:
 
 * iOS uses system-controlled UI for email to ensure user privacy
 * Apps cannot send emails silently
-* Proper delegate handling is critical for UX
-* HTML emails require valid, lightweight markup
+* Proper delegate handling is critical for good UX
+* HTML emails must use valid, lightweight markup
 
 ---
 
@@ -161,10 +163,24 @@ This allows:
 * Attach logs or screenshots
 * Add Share Sheet fallback (`UIActivityViewController`)
 * Add analytics tracking for mail actions
-* Convert to SwiftUI version
+* Convert implementation to SwiftUI
 
 ---
 
 ## 👩‍💻 Author
 
 **Anukriti Jain**
+iOS Developer | Swift | UIKit
+
+```
+
+---
+
+If you want, I can also:
+- Add **badges**
+- Add a **screenshots section**
+- Create a **SwiftUI version**
+- Optimize this README for **job applications**
+
+Just say the word 🚀
+```
