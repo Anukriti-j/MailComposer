@@ -1,5 +1,3 @@
----
-````md
 # 📧 Mail Composer Demo App (iOS)
 
 A simple iOS demo application showcasing how to compose and send emails using  
@@ -172,15 +170,4 @@ This allows:
 **Anukriti Jain**
 iOS Developer | Swift | UIKit
 
-```
-
----
-
-If you want, I can also:
-- Add **badges**
-- Add a **screenshots section**
-- Create a **SwiftUI version**
-- Optimize this README for **job applications**
-
-Just say the word 🚀
 ```
